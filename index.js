@@ -9,7 +9,7 @@ module.exports.geometry = {};
 
 module.exports.featurecollection = {};
 
-['one'].forEach(function(name) {
+['one', 'idaho'].forEach(function(name) {
     module.exports.featurecollection[name] = JSON.parse(fs.readFileSync(__dirname + '/data/featurecollection/' + name + '.geojson'));
 });
 
