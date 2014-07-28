@@ -1,6 +1,6 @@
 {
   "name": "geojson-fixtures",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "geojson fixtures for testing and validation",
   "main": "index.js",
   "scripts": {
