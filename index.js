@@ -2,10 +2,17 @@ var fs = require('fs');
 
 module.exports.geometry = {};
 
-['geometrycollection', 'polygon', 'point', 'multipoint', 'multipolygon',
-    'polygon', 'multilinestring'].forEach(function(type) {
+var geoms = ['geometrycollection', 'polygon', 'point', 'multipoint', 'multipolygon',
+    'polygon', 'multilinestring'];
+
+geoms.forEach(function(type) {
     module.exports.geometry[type] = JSON.parse(fs.readFileSync(__dirname + '/data/geometry/' + type + '.geojson'));
 });
+
+geoms.forEach(function(type) {
+    module.exports.geometry[type+'-xyz'] = JSON.parse(fs.readFileSync(__dirname + '/data/geometry/' + type + '-xyz.geojson'));
+});
+
 
 module.exports.featurecollection = {};
 
