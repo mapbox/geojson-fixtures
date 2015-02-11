@@ -26,10 +26,10 @@ module.exports.feature = {};
     module.exports.feature[name] = JSON.parse(fs.readFileSync(__dirname + '/data/feature/' + name + '.geojson'));
 });
 
-var all = [];
-Object.keys(module.exports).forEach(function(o) {
-    Object.keys(module.exports[o]).forEach(function(k) {
-        all.push(module.exports[o][k]);
+var all = {};
+Object.keys(module.exports).forEach(function(o, i) {
+    Object.keys(module.exports[o]).forEach(function(k, j) {
+        all[k + '-' + i + '-' + j] = module.exports[o][k];
     });
 });
 
