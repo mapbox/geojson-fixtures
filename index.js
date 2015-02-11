@@ -29,6 +29,7 @@ module.exports.feature = {};
 var all = {};
 Object.keys(module.exports).forEach(function(o, i) {
     Object.keys(module.exports[o]).forEach(function(k, j) {
+        if (k === 'idaho') return;
         all[k + '-' + i + '-' + j] = module.exports[o][k];
     });
 });
