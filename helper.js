@@ -6,7 +6,7 @@ function values(o) {
     return Object.keys(o).map(function(k) { return o[k]; });
 }
 
-module.exports = function(t, type, fn, dir, hint) {
+module.exports = function(t, type, fn, dir, hint, postcondition) {
     t.test('fixtures: ' + type, function(t) {
         for (var k in fixtures[type]) {
             var input = JSON.parse(JSON.stringify(fixtures[type][k]));
@@ -18,6 +18,9 @@ module.exports = function(t, type, fn, dir, hint) {
             }
             if (hint !== false) {
                 t.deepEqual(geojsonhint(output), [], 'geojsonhint-safe');
+            }
+            if (postcondition) {
+                postcondition(t, input, output);
             }
             t.deepEqual(output,
                 JSON.parse(fs.readFileSync(dir + '/' + k + '.output.json')), k);
