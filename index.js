@@ -25,3 +25,12 @@ module.exports.feature = {};
 ['one'].forEach(function(name) {
     module.exports.feature[name] = JSON.parse(fs.readFileSync(__dirname + '/data/feature/' + name + '.geojson'));
 });
+
+var all = [];
+Object.keys(module.exports).forEach(function(o) {
+    Object.keys(module.exports[o]).forEach(function(k) {
+        all.push(module.exports[o][k]);
+    });
+});
+
+module.exports.all = all;
