@@ -6,7 +6,7 @@ function values(o) {
     return Object.keys(o).map(function(k) { return o[k]; });
 }
 
-module.exports = function(t, type, fn, dir) {
+module.exports = function(t, type, fn, dir, hint) {
     t.test('fixtures: ' + type, function(t) {
         for (var k in fixtures[type]) {
             var input = JSON.parse(JSON.stringify(fixtures[type][k]));
@@ -16,7 +16,9 @@ module.exports = function(t, type, fn, dir) {
                     dir + '/' + k + '.output.json',
                     JSON.stringify(output, null, 2));
             }
-            t.deepEqual(geojsonhint(output), [], 'geojsonhint-safe');
+            if (hint !== false) {
+                t.deepEqual(geojsonhint(output), [], 'geojsonhint-safe');
+            }
             t.deepEqual(output,
                 JSON.parse(fs.readFileSync(dir + '/' + k + '.output.json')), k);
         }

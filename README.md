@@ -18,6 +18,7 @@ Includes a test helper for writing fixture-based tests with [substack/tape](http
 // second is the type of fixtures: 'all', 'geometry', 'feature', 'featurecollection'
 // third is the function to run to turn input into output: the tested function.
 // fourth is the directory where test output should be stored.
+// fifth is whether to enable geojsonhint as a last step. set to false to disable.
 geojsonFixtures(test, 'all', centroid, __dirname + '/test');
 ```
 
