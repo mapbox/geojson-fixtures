@@ -1,4 +1,5 @@
 var fs = require('fs'),
+    geojsonhint = require('geojsonhint').hint,
     fixtures = require('./');
 
 function values(o) {
@@ -15,6 +16,7 @@ module.exports = function(t, type, fn, dir) {
                     dir + '/' + k + '.output.json',
                     JSON.stringify(output, null, 2));
             }
+            t.deepEqual(geojsonhint(output), [], 'geojsonhint-safe');
             t.deepEqual(output,
                 JSON.parse(fs.readFileSync(dir + '/' + k + '.output.json')), k);
         }

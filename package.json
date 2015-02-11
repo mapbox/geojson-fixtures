@@ -25,5 +25,8 @@
   "homepage": "https://github.com/mapbox/geojson-fixtures",
   "devDependencies": {
     "tape": "~2.13.3"
+  },
+  "dependencies": {
+    "geojsonhint": "^1.0.0"
   }
 }
