@@ -16,7 +16,7 @@ geoms.forEach(function(type) {
 
 module.exports.featurecollection = {};
 
-['one', 'idaho'].forEach(function(name) {
+['one'].forEach(function(name) {
     module.exports.featurecollection[name] = JSON.parse(fs.readFileSync(__dirname + '/data/featurecollection/' + name + '.geojson'));
 });
 
@@ -29,7 +29,6 @@ module.exports.feature = {};
 var all = {};
 Object.keys(module.exports).forEach(function(o, i) {
     Object.keys(module.exports[o]).forEach(function(k, j) {
-        if (k === 'idaho') return;
         all[k + '-' + i + '-' + j] = module.exports[o][k];
     });
 });
