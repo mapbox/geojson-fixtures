@@ -27,4 +27,4 @@ geojsonFixtures(test, 'all', centroid, __dirname + '/test', true, function(t, in
 
 ## Install
 
-    npm install --save-dev geojson-fixtures
+    npm install --save-dev @mapbox/geojson-fixtures
