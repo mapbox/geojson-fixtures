@@ -1,5 +1,5 @@
 {
-  "name": "geojson-fixtures",
+  "name": "@mapbox/geojson-fixtures",
   "version": "1.0.0",
   "description": "geojson fixtures for testing and validation",
   "main": "index.js",
