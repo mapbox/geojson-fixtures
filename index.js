@@ -1,36 +1,33 @@
-var fs = require('fs');
+import {readFileSync} from 'fs';
 
-module.exports.geometry = {};
+export const geometry = {};
 
-var geoms = ['geometrycollection', 'polygon', 'point', 'multipoint', 'multipolygon',
-    'polygon', 'multilinestring'];
+var geoms = ['geometrycollection', 'polygon', 'point', 'multipoint', 'multipolygon', 'polygon', 'multilinestring'];
 
-geoms.forEach(function(type) {
-    module.exports.geometry[type] = JSON.parse(fs.readFileSync(__dirname + '/data/geometry/' + type + '.geojson'));
-});
+function readJSON(path) {
+    return JSON.parse(readFileSync(new URL(path, import.meta.url)));
+}
 
-geoms.forEach(function(type) {
-    module.exports.geometry[type+'-xyz'] = JSON.parse(fs.readFileSync(__dirname + '/data/geometry/' + type + '-xyz.geojson'));
-});
+for (const type of geoms) {
+    geometry[type] = readJSON(`data/geometry/${type}.geojson`);
+}
+for (const type of geoms) {
+    geometry[`${type}-xyz`] = readJSON(`data/geometry/${type}-xyz.geojson`);
+}
 
+export const featurecollection = {
+    one: readJSON(`data/featurecollection/one.geojson`)
+};
+export const feature = {
+    one: readJSON(`data/feature/one.geojson`)
+};
 
-module.exports.featurecollection = {};
+export const all = {};
 
-['one'].forEach(function(name) {
-    module.exports.featurecollection[name] = JSON.parse(fs.readFileSync(__dirname + '/data/featurecollection/' + name + '.geojson'));
-});
+let i = 0;
+for (const type of Object.keys(geometry)) {
+    all[`${type}-0-${i++}`] = geometry[type];
+}
 
-module.exports.feature = {};
-
-['one'].forEach(function(name) {
-    module.exports.feature[name] = JSON.parse(fs.readFileSync(__dirname + '/data/feature/' + name + '.geojson'));
-});
-
-var all = {};
-Object.keys(module.exports).forEach(function(o, i) {
-    Object.keys(module.exports[o]).forEach(function(k, j) {
-        all[k + '-' + i + '-' + j] = module.exports[o][k];
-    });
-});
-
-module.exports.all = all;
+all['one-1-0'] = featurecollection.one;
+all['one-2-0'] = feature.one;

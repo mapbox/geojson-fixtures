@@ -2,9 +2,10 @@
   "name": "@mapbox/geojson-fixtures",
   "version": "1.0.0",
   "description": "geojson fixtures for testing and validation",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "node --test"
   },
   "repository": {
     "type": "git",
@@ -22,11 +23,5 @@
   "bugs": {
     "url": "https://github.com/mapbox/geojson-fixtures/issues"
   },
-  "homepage": "https://github.com/mapbox/geojson-fixtures",
-  "devDependencies": {
-    "tape": "~4.6.3"
-  },
-  "dependencies": {
-    "@mapbox/geojsonhint": "^1.0.0"
-  }
+  "homepage": "https://github.com/mapbox/geojson-fixtures"
 }
